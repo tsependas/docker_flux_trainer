@@ -20,5 +20,7 @@ snapshot_download(
     repo_id=model_id,
     token=hf_token,
     local_dir=save_dir,
+    resume_download=True,
+    cache_dir=save_dir,
     ignore_patterns=["flux1-dev.safetensors", "ae.safetensors"]
 )
