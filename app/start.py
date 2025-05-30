@@ -1,16 +1,24 @@
 import os
-from huggingface_hub import snapshot_download
+import torch
+from diffusers import FluxPipeline
 
-HF_TOKEN = os.environ.get("HF_TOKEN")
+# Retrieve the Hugging Face token from the environment
+hf_token = os.environ.get("HF_TOKEN")
+if hf_token is None:
+    raise ValueError("HF_TOKEN environment variable is not set.")
 
-print("📥 Downloading $MODEL_ID to '$SAVE_DIR' ...")
-snapshot_download(
-    repo_id="black-forest-labs/FLUX.1-dev",
-    token=HF_TOKEN,
-    local_dir="/app/flux1-dev",
-    ignore_patterns=[
-        "flux1-dev.safetensors",
-        "ae.safetensors"
-    ]
+# Define model ID and save directory
+model_id = "black-forest-labs/FLUX.1-dev"
+save_dir = "/app/flux1-dev"
+
+# Load the model with bfloat16 precision using the token
+pipe = FluxPipeline.from_pretrained(
+    model_id,
+    torch_dtype=torch.bfloat16,
+    token=hf_token,
+    resume_download=True,
+    cache_dir=save_dir
 )
-print("✅ Download complete.")
+
+# Save the model to the specified directory
+pipe.save_pretrained(save_dir)
