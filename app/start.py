@@ -17,7 +17,8 @@ pipe = FluxPipeline.from_pretrained(
     torch_dtype=torch.bfloat16,
     token=hf_token,
     resume_download=True,
-    cache_dir=save_dir
+    cache_dir=save_dir,
+    ignore_patterns=["flux1-dev.safetensors", "ae.safetensors"]
 )
 
 # Save the model to the specified directory
