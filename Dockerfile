@@ -10,7 +10,7 @@ WORKDIR /app
 #    && rm -rf /var/lib/apt/lists/*
 
 # Create and activate virtualenv
-RUN python3 -m venv /venv
+RUN python -m venv /venv
 ENV PATH="/venv/bin:$PATH"
 
 # Clone ai-toolkit
