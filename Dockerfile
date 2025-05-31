@@ -4,10 +4,10 @@ ENV DEBIAN_FRONTEND=noninteractive
 WORKDIR /app
 
 # Install Python 3.12 + build dependencies
-#RUN apt-get update && apt-get install -y --no-install-recommends \
-#    python3 python3-venv python3-pip python3-dev \
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3 python3-venv python3-pip python3-dev \
 #    git build-essential libgl1 libglib2.0-0 libsm6 libxext6 libxrender1 \
-#    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/*
 
 # Create and activate virtualenv
 RUN python -m venv /venv
