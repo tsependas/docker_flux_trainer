@@ -10,7 +10,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
 # Create and activate virtualenv
-RUN python -m venv /venv
+RUN python3 -m venv /venv
 ENV PATH="/venv/bin:$PATH"
 
 # Clone ai-toolkit
