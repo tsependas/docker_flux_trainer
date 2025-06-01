@@ -16,8 +16,8 @@ RUN git clone https://github.com/ostris/ai-toolkit.git /app/ai-toolkit
 # Copy application files
 COPY ./app /app
 
-# RUN python download_model.py
-RUN chmod +x entrypoint.sh
+RUN sed -i 's/\r$//' /app/entrypoint.sh && \
+    chmod +x /app/entrypoint.sh
 
 # Set entrypoint
 ENTRYPOINT ["/app/entrypoint.sh"]
