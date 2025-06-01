@@ -46,16 +46,16 @@ train_config = OrderedDict([
                         ('caption_dropout_rate', 0.05),  # will drop out the caption 5% of time
                         ('shuffle_tokens', False),  # shuffle caption order, split by commas
                         ('cache_latents_to_disk', True),  # leave this true unless you know what you're doing
-                        ('num_workers', 2),
+                        ('num_workers', 6),
                         ('pin_memory', True),
                         ('resolution', [1024])
                         #('resolution', [512, 768, 1024])  # flux enjoys multiple resolutions
                     ])
                 ]),
                 ('train', OrderedDict([
-                    ('batch_size', 4),
+                    ('batch_size', 2),
                     ('steps', 1000),  # total number of steps to train 500 - 4000 is a good range
-                    ('gradient_accumulation_steps', 1),
+                    ('gradient_accumulation_steps', 2),
                     ('train_unet', True),
                     ('train_text_encoder', False),  # probably won't work with flux
                     ('content_or_style', 'balanced'),  # content, style, balanced
@@ -81,7 +81,7 @@ train_config = OrderedDict([
                     ])),
 
                     # will probably need this if gpu supports it for flux, other dtypes may not work correctly
-                    ('dtype', 'bf16')
+                    ('dtype', 'fp16')
                 ])),
                 ('model', OrderedDict([
                     # huggingface model name or path
