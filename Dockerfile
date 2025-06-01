@@ -20,4 +20,4 @@ COPY ./app /app
 RUN chmod +x entrypoint.sh
 
 # Set entrypoint
-CMD ["/bin/bash", "enrypoint.sh"]
+ENTRYPOINT ["/app/entrypoint.sh"]
