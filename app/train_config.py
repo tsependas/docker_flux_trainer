@@ -45,20 +45,22 @@ train_config = OrderedDict([
                         ('caption_ext', 'txt'),
                         ('caption_dropout_rate', 0.05),  # will drop out the caption 5% of time
                         ('shuffle_tokens', False),  # shuffle caption order, split by commas
-                        ('cache_latents_to_disk', True),  # leave this true unless you know what you're doing
+                        ('cache_latents_to_disk', False),  # leave this true unless you know what you're doing
+                        ('num_workers', 4),
+                        ('pin_memory', True),
                         ('resolution', [512, 768, 1024])  # flux enjoys multiple resolutions
                     ])
                 ]),
                 ('train', OrderedDict([
-                    ('batch_size', 1),
+                    ('batch_size', 4),
                     ('steps', 1000),  # total number of steps to train 500 - 4000 is a good range
-                    ('gradient_accumulation_steps', 1),
+                    ('gradient_accumulation_steps', 2),
                     ('train_unet', True),
                     ('train_text_encoder', False),  # probably won't work with flux
                     ('content_or_style', 'balanced'),  # content, style, balanced
                     ('gradient_checkpointing', True),  # need the on unless you have a ton of vram
                     ('noise_scheduler', 'flowmatch'),  # for training only
-                    ('optimizer', 'adamw8bit'),
+                    ('optimizer', 'adamw_fused'),
                     ('lr', 5e-4),
 
                     # uncomment this to skip the pre training sample
