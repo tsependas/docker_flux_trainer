@@ -25,7 +25,8 @@ timm
 prodigyopt
 controlnet_aux==0.0.10
 python-dotenv
-bitsandbytes
+#bitsandbytes
+bitsandbytes-cuda12x
 hf_transfer
 lpips
 pytorch_fid
