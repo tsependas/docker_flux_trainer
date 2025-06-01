@@ -50,7 +50,7 @@ train_config = OrderedDict([
                     ])
                 ]),
                 ('train', OrderedDict([
-                    ('batch_size', 2),
+                    ('batch_size', 1),
                     ('steps', 1000),  # total number of steps to train 500 - 4000 is a good range
                     ('gradient_accumulation_steps', 1),
                     ('train_unet', True),
@@ -59,7 +59,7 @@ train_config = OrderedDict([
                     ('gradient_checkpointing', True),  # need the on unless you have a ton of vram
                     ('noise_scheduler', 'flowmatch'),  # for training only
                     ('optimizer', 'adamw8bit'),
-                    ('lr', 1e-4),
+                    ('lr', 5e-4),
 
                     # uncomment this to skip the pre training sample
                     ('skip_first_sample', True),
