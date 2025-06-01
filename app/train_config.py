@@ -23,7 +23,13 @@ train_config = OrderedDict([
                 ('network', OrderedDict([
                     ('type', 'lora'),
                     ('linear', 16),
-                    ('linear_alpha', 16)
+                    ('linear_alpha', 16),
+                    ('network_kwargs', OrderedDict([
+                        ('only_if_contains', [
+                            "transformer.single_transformer_blocks.9.",
+                            "transformer.single_transformer_blocks.25."
+                        ])
+                    ]))
                 ])),
                 ('save', OrderedDict([
                     ('dtype', 'float16'),  # precision to save
@@ -56,13 +62,13 @@ train_config = OrderedDict([
                     ('lr', 1e-4),
 
                     # uncomment this to skip the pre training sample
-                    # ('skip_first_sample', True),
+                    ('skip_first_sample', True),
 
                     # uncomment to completely disable sampling
-                    # ('disable_sampling', True),
+                    ('disable_sampling', False),
 
                     # uncomment to use new vell curved weighting. Experimental but may produce better results
-                    # ('linear_timesteps', True),
+                    ('linear_timesteps', True),
 
                     # ema will smooth out learning, but could slow it down. Recommended to leave on.
                     ('ema_config', OrderedDict([
