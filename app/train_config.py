@@ -53,7 +53,7 @@ train_config = OrderedDict([
                     ])
                 ]),
                 ('train', OrderedDict([
-                    ('batch_size', 8),
+                    ('batch_size', 40),
                     ('steps', 1000),  # total number of steps to train 500 - 4000 is a good range
                     ('gradient_accumulation_steps', 1),
                     ('train_unet', True),
@@ -75,10 +75,10 @@ train_config = OrderedDict([
                     ('linear_timesteps', True),
 
                     # ema will smooth out learning, but could slow it down. Recommended to leave on.
-                    #('ema_config', OrderedDict([
-                    #    ('use_ema', True),
-                   #     ('ema_decay', 0.99)
-                    #])),
+                    ('ema_config', OrderedDict([
+                        ('use_ema', True),
+                        ('ema_decay', 0.99)
+                    ])),
 
                     # will probably need this if gpu supports it for flux, other dtypes may not work correctly
                     ('dtype', 'bf16')
