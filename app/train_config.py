@@ -83,7 +83,7 @@ train_config = OrderedDict([
                     # huggingface model name or path
                     ('name_or_path', '/workspace/flux1-dev'),
                     ('is_flux', True),
-                    ('quantize', True),  # run 8bit mixed precision
+                    ('quantize', False),  # run 8bit mixed precision
                     ('low_vram', False),  # uncomment this if the GPU is connected to your monitors. It will use less vram to quantize, but is slower.
                 ])),
                 ('sample', OrderedDict([
