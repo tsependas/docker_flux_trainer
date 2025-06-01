@@ -1,6 +1,4 @@
 from huggingface_hub import snapshot_download
-#from diffusers import FluxPipeline
-#import torch
 import os
 
 # Retrieve the Hugging Face token from the environment
