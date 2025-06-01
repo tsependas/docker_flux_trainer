@@ -50,7 +50,7 @@ train_config = OrderedDict([
                     ])
                 ]),
                 ('train', OrderedDict([
-                    ('batch_size', 2),
+                    ('batch_size', 1),
                     ('steps', 1000),  # total number of steps to train 500 - 4000 is a good range
                     ('gradient_accumulation_steps', 1),
                     ('train_unet', True),
