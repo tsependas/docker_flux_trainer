@@ -22,8 +22,8 @@ train_config = OrderedDict([
                 ('trigger_word', 'woman'),
                 ('network', OrderedDict([
                     ('type', 'lora'),
-                    ('linear', 128),
-                    ('linear_alpha', 128),
+                    ('linear', 32),
+                    ('linear_alpha', 32),
                     ('network_kwargs', OrderedDict([
                         ('only_if_contains', [
                             "transformer.single_transformer_blocks.9.",
@@ -53,7 +53,7 @@ train_config = OrderedDict([
                     ])
                 ]),
                 ('train', OrderedDict([
-                    ('batch_size', 2),
+                    ('batch_size', 4),
                     ('steps', 1000),  # total number of steps to train 500 - 4000 is a good range
                     ('gradient_accumulation_steps', 2),
                     ('train_unet', True),
@@ -81,7 +81,7 @@ train_config = OrderedDict([
                     ])),
 
                     # will probably need this if gpu supports it for flux, other dtypes may not work correctly
-                    ('dtype', 'fp16')
+                    ('dtype', 'bf16')
                 ])),
                 ('model', OrderedDict([
                     # huggingface model name or path
