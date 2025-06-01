@@ -22,8 +22,8 @@ train_config = OrderedDict([
                 ('trigger_word', 'woman'),
                 ('network', OrderedDict([
                     ('type', 'lora'),
-                    ('linear', 64),
-                    ('linear_alpha', 64),
+                    ('linear', 128),
+                    ('linear_alpha', 128),
                     ('network_kwargs', OrderedDict([
                         ('only_if_contains', [
                             "transformer.single_transformer_blocks.9.",
