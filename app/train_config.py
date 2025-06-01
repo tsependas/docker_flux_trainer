@@ -13,7 +13,7 @@ train_config = OrderedDict([
             OrderedDict([
                 ('type', 'sd_trainer'),
                 # root folder to save training sessions/samples/weights
-                ('training_folder', '/workspace/output'),
+                ('training_folder', '/workspace/output1'),
                 # uncomment to see performance stats in the terminal every N steps
                 ('performance_log_every', 100),
                 ('device', 'cuda:0'),
