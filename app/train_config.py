@@ -84,7 +84,7 @@ train_config = OrderedDict([
                     ('name_or_path', '/workspace/flux1-dev'),
                     ('is_flux', True),
                     ('quantize', True),  # run 8bit mixed precision
-                    #('low_vram', True),  # uncomment this if the GPU is connected to your monitors. It will use less vram to quantize, but is slower.
+                    ('low_vram', False),  # uncomment this if the GPU is connected to your monitors. It will use less vram to quantize, but is slower.
                 ])),
                 ('sample', OrderedDict([
                     ('sampler', 'flowmatch'),  # must match train.noise_scheduler
