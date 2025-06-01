@@ -22,8 +22,8 @@ train_config = OrderedDict([
                 ('trigger_word', 'woman'),
                 ('network', OrderedDict([
                     ('type', 'lora'),
-                    ('linear', 128),
-                    ('linear_alpha', 128),
+                    ('linear', 64),
+                    ('linear_alpha', 64),
                     ('network_kwargs', OrderedDict([
                         ('only_if_contains', [
                             "transformer.single_transformer_blocks.9.",
@@ -48,8 +48,8 @@ train_config = OrderedDict([
                         ('cache_latents_to_disk', True),  # leave this true unless you know what you're doing
                         ('num_workers', 2),
                         ('pin_memory', True),
-                        #('resolution', [512])
-                        ('resolution', [512, 768, 1024])  # flux enjoys multiple resolutions
+                        ('resolution', [1024])
+                        #('resolution', [512, 768, 1024])  # flux enjoys multiple resolutions
                     ])
                 ]),
                 ('train', OrderedDict([
