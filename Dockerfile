@@ -15,6 +15,7 @@ RUN git clone https://github.com/ostris/ai-toolkit.git /app/ai-toolkit
 
 # Copy application files
 COPY ./app /app
+COPY ./input /app/input
 
 RUN sed -i 's/\r$//' /app/entrypoint.sh && \
     chmod +x /app/entrypoint.sh
