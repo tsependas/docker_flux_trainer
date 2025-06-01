@@ -59,8 +59,8 @@ train_config = OrderedDict([
                     ('train_unet', True),
                     ('train_text_encoder', False),  # probably won't work with flux
                     ('content_or_style', 'balanced'),  # content, style, balanced
-                    #('gradient_checkpointing', True),  # need the on unless you have a ton of vram
-                    ('gradient_checkpointing', False),
+                    ('gradient_checkpointing', True),  # need the on unless you have a ton of vram
+                    #('gradient_checkpointing', False),
                     ('noise_scheduler', 'flowmatch'),  # for training only
                     ('optimizer', 'adamw8bit'),
                     ('lr', 5e-4),
