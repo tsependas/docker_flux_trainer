@@ -46,7 +46,7 @@ train_config = OrderedDict([
                         ('caption_dropout_rate', 0.05),  # will drop out the caption 5% of time
                         ('shuffle_tokens', False),  # shuffle caption order, split by commas
                         ('cache_latents_to_disk', True),  # leave this true unless you know what you're doing
-                        ('num_workers', 8),
+                        ('num_workers', 2),
                         ('pin_memory', True),
                         #('resolution', [512])
                         ('resolution', [512, 768, 1024])  # flux enjoys multiple resolutions
