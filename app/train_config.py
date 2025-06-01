@@ -60,7 +60,7 @@ train_config = OrderedDict([
                     ('content_or_style', 'balanced'),  # content, style, balanced
                     ('gradient_checkpointing', True),  # need the on unless you have a ton of vram
                     ('noise_scheduler', 'flowmatch'),  # for training only
-                    ('optimizer', 'adamw_fused'),
+                    ('optimizer', 'adamw8bit'),
                     ('lr', 5e-4),
 
                     # uncomment this to skip the pre training sample
