@@ -22,8 +22,8 @@ train_config = OrderedDict([
                 ('trigger_word', 'woman'),
                 ('network', OrderedDict([
                     ('type', 'lora'),
-                    ('linear', 32),
-                    ('linear_alpha', 32),
+                    ('linear', 128),
+                    ('linear_alpha', 128),
                     ('network_kwargs', OrderedDict([
                         ('only_if_contains', [
                             "transformer.single_transformer_blocks.9.",
@@ -46,15 +46,15 @@ train_config = OrderedDict([
                         ('caption_dropout_rate', 0.05),  # will drop out the caption 5% of time
                         ('shuffle_tokens', False),  # shuffle caption order, split by commas
                         ('cache_latents_to_disk', True),  # leave this true unless you know what you're doing
-                        ('num_workers', 6),
+                        ('num_workers', 8),
                         ('pin_memory', True),
                         #('resolution', [1024])
                         ('resolution', [512, 768, 1024])  # flux enjoys multiple resolutions
                     ])
                 ]),
                 ('train', OrderedDict([
-                    ('batch_size', 2),
-                    ('steps', 1000),  # total number of steps to train 500 - 4000 is a good range
+                    ('batch_size', 8),
+                    ('steps', 200),  # total number of steps to train 500 - 4000 is a good range
                     ('gradient_accumulation_steps', 1),
                     ('train_unet', True),
                     ('train_text_encoder', False),  # probably won't work with flux
@@ -92,7 +92,7 @@ train_config = OrderedDict([
                 ])),
                 ('sample', OrderedDict([
                     ('sampler', 'flowmatch'),  # must match train.noise_scheduler
-                    ('sample_every', 250),  # sample every this many steps
+                    ('sample_every', 50),  # sample every this many steps
                     ('width', 512),
                     ('height', 512),
                     ('prompts', [
