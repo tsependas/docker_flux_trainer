@@ -47,7 +47,7 @@ train_config = OrderedDict([
                         ('shuffle_tokens', False),  # shuffle caption order, split by commas
                         ('cache_latents_to_disk', True),  # leave this true unless you know what you're doing
                         ('num_workers', 6),
-                        ('pin_memory', True),
+                        #('pin_memory', True),
                         ('resolution', [1024])
                         #('resolution', [512, 768, 1024])  # flux enjoys multiple resolutions
                     ])
