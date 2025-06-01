@@ -8,7 +8,7 @@ RUN apt-get update && \
     apt-get install -y --no-install-recommends git libgl1 libglib2.0-0 && \
     rm -rf /var/lib/apt/lists/*
 
-COPY requirements.txt ./
+COPY ./app/requirements.txt /app
 RUN pip install --no-cache-dir -r requirements.txt
 
 RUN git clone https://github.com/ostris/ai-toolkit.git /app/ai-toolkit
