@@ -16,7 +16,7 @@ RUN git clone https://github.com/ostris/ai-toolkit.git /app/ai-toolkit
 # Copy application files
 COPY ./app /app
 
-RUN ["python", "download_model.py"]
+RUN python download_model.py
 
 # Set entrypoint
 #CMD ["python3", "-u", "start.py"]
