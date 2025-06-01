@@ -2,4 +2,5 @@
 set -e
 
 python /app/download_model.py
-exit 0
+
+runpodctl stop pod $RUNPOD_POD_ID
