@@ -17,7 +17,7 @@ RUN git clone https://github.com/ostris/ai-toolkit.git /app/ai-toolkit
 COPY ./app /app
 
 # RUN python download_model.py
-RUN chmod +x enrypoint.sh
+RUN chmod +x entrypoint.sh
 
 # Set entrypoint
 CMD ["/bin/bash", "enrypoint.sh"]
