@@ -32,7 +32,7 @@ train_config = OrderedDict([
                     ]))
                 ])),
                 ('save', OrderedDict([
-                    ("dtype", "bfloat16")
+                    ("dtype", "bfloat16"),
                     ('save_every', 250),  # save every this many steps
                     ('max_step_saves_to_keep', 4)  # how many intermittent saves to keep
                 ])),
