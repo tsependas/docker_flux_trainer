@@ -1,5 +1,9 @@
 FROM pytorch/pytorch:2.6.0-cuda12.6-cudnn9-runtime
 
+# Declare build-time arg, then expose it as an ENV inside the image
+ARG HF_TOKEN
+ENV HF_TOKEN=${HF_TOKEN}
+
 ENV DEBIAN_FRONTEND=noninteractive
 WORKDIR /app
 
