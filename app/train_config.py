@@ -32,7 +32,7 @@ train_config = OrderedDict([
                     ]))
                 ])),
                 ('save', OrderedDict([
-                    ("dtype", "bf16"),
+                    ("dtype", "bfloat16")
                     ('save_every', 250),  # save every this many steps
                     ('max_step_saves_to_keep', 4)  # how many intermittent saves to keep
                 ])),
@@ -47,15 +47,15 @@ train_config = OrderedDict([
                         ('shuffle_tokens', False),  # shuffle caption order, split by commas
                         ('cache_latents_to_disk', True),  # leave this true unless you know what you're doing
                         ('num_workers', 6),
-                        #('pin_memory', True),
-                        ('resolution', [1024])
-                        #('resolution', [512, 768, 1024])  # flux enjoys multiple resolutions
+                        ('pin_memory', True),
+                        #('resolution', [1024])
+                        ('resolution', [512, 768, 1024])  # flux enjoys multiple resolutions
                     ])
                 ]),
                 ('train', OrderedDict([
-                    ('batch_size', 4),
+                    ('batch_size', 2),
                     ('steps', 1000),  # total number of steps to train 500 - 4000 is a good range
-                    ('gradient_accumulation_steps', 2),
+                    ('gradient_accumulation_steps', 1),
                     ('train_unet', True),
                     ('train_text_encoder', False),  # probably won't work with flux
                     ('content_or_style', 'balanced'),  # content, style, balanced
@@ -75,13 +75,13 @@ train_config = OrderedDict([
                     ('linear_timesteps', True),
 
                     # ema will smooth out learning, but could slow it down. Recommended to leave on.
-                    ('ema_config', OrderedDict([
-                        ('use_ema', True),
-                        ('ema_decay', 0.99)
-                    ])),
+                    #('ema_config', OrderedDict([
+                    #    ('use_ema', True),
+                    #    ('ema_decay', 0.99)
+                    # ])),
 
                     # will probably need this if gpu supports it for flux, other dtypes may not work correctly
-                    ('dtype', 'bf16')
+                    ('dtype', 'bfloat16')
                 ])),
                 ('model', OrderedDict([
                     # huggingface model name or path
