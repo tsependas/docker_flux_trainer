@@ -20,8 +20,7 @@ COPY ./app /app
 COPY ./input /app/input
 COPY ./entrypoint.sh /entrypoint.sh
 
-RUN sed -i 's/\r$//' /entrypoint.sh && \
-    chmod +x /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
 # Set entrypoint
-CMD ["/entrypoint.sh"]
+ENTRYPOINT ["sh", "/entrypoint.sh"]
