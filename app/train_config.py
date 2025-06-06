@@ -48,6 +48,8 @@ train_config = OrderedDict([
                         ('cache_latents_to_disk', True),  # leave this true unless you know what you're doing
                         ('num_workers', 8),
                         ('pin_memory', True),
+                        ('latents_batch_size', 32),
+                        ('latents_dtype', 'bfloat16'),
                         #('resolution', [1024])
                         ('resolution', [512, 768, 1024])  # flux enjoys multiple resolutions
                     ])
