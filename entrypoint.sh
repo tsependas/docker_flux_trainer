@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -e
 
-python /app/download_model.py
+exec python -u /app/download_model.py
 
-python /app/train.py
+exec python -u /app/train.py
 
