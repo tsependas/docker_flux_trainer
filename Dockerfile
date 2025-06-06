@@ -13,7 +13,10 @@ RUN apt-get update && \
 COPY ./app/requirements.txt /app
 RUN pip install --no-cache-dir -r requirements.txt
 
-RUN git clone https://github.com/ostris/ai-toolkit.git /app/ai-toolkit
+# Initialize and update git submodules
+COPY .git .git
+COPY .gitmodules .gitmodules
+RUN git submodule update --init --recursive
 
 # Copy application files
 COPY ./app /app

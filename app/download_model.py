@@ -13,7 +13,7 @@ if hf_token is None:
 
 # Define model ID and save directory
 model_id = "black-forest-labs/FLUX.1-dev"
-save_dir = "/workspace/flux1-dev"
+save_dir = "./workspace/flux1-dev"
 
 logger.info(f"Starting download of model {model_id} to {save_dir}")
 

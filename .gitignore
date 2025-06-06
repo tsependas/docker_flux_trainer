@@ -1,0 +1,6 @@
+workspace/
+logs/
+
+*/__pycache__/
+input/_latent_cache/
+input/.aitk_size.json
