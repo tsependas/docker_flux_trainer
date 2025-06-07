@@ -1,6 +1,12 @@
 workspace/
 logs/
 
-*/__pycache__/
+# Python cache files
+__pycache__/
+*.py[cod]
+*$py.class
+**/__pycache__/
+**/*.py[cod]
+**/*$py.class
 input/_latent_cache/
 input/.aitk_size.json

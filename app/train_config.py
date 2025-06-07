@@ -10,7 +10,13 @@ train_config = OrderedDict([
     ('job', 'extension'),
     ('config', OrderedDict([
         # this name will be the folder and filename name
-        ('name', 'my_first_flux_lora_v1'),
+        ('name', 'my_first_flux_lora_v6'),
+        ('logging', OrderedDict([
+            ('use_rest_api', True),
+            ('api_url', 'http://localhost:8000'),
+            ('log_every', 10),  # Send updates every 10 steps
+            ('verbose', True)   # Enable detailed logging
+        ])),
         ('process', [
             OrderedDict([
                 ('type', 'sd_trainer'),
@@ -21,17 +27,17 @@ train_config = OrderedDict([
                 ('device', 'cuda:0'),
                 # if a trigger word is specified, it will be added to captions of training data if it does not already exist
                 # alternatively, in your captions you can add [trigger] and it will be replaced with the trigger word
-                ('trigger_word', 'woman'),
+                ('trigger_word', 'eva_person'),
                 ('network', OrderedDict([
                     ('type', 'lora'),
                     ('linear', 32),
                     ('linear_alpha', 32),
-                    ('network_kwargs', OrderedDict([
+                     ('network_kwargs', OrderedDict([
                         ('only_if_contains', [
                             "transformer.single_transformer_blocks.9.",
                             "transformer.single_transformer_blocks.25."
                         ])
-                    ]))
+                    ])) 
                 ])),
                 ('save', OrderedDict([
                     ("dtype", "bfloat16"),
@@ -59,7 +65,7 @@ train_config = OrderedDict([
                 ]),
                 ('train', OrderedDict([
                     ('batch_size', 2),
-                    ('steps', 600),  # total number of steps to train 500 - 4000 is a good range
+                    ('steps', 500),  # total number of steps to train 500 - 4000 is a good range
                     ('gradient_accumulation_steps', 1),
                     ('train_unet', True),
                     ('train_text_encoder', False),  # probably won't work with flux
@@ -68,7 +74,7 @@ train_config = OrderedDict([
                     #('gradient_checkpointing', False),
                     ('noise_scheduler', 'flowmatch'),  # for training only
                     ('optimizer', 'adamw8bit'),
-                    ('lr', 5e-4),
+                    ('lr', 3e-4),
 
                     # uncomment this to skip the pre training sample
                     ('skip_first_sample', True),
@@ -103,7 +109,7 @@ train_config = OrderedDict([
                     ('prompts', [
                         # you can add [trigger] to the prompts here and it will be replaced with the trigger word
                         #'[trigger] holding a sign that says \'I LOVE PROMPTS!\'',
-                        'blonde woman, playing chess, in a park',
+                        'blonde eva_person, playing chess, in a park',
                     ]),
                     ('neg', ''),  # not used on flux
                     ('seed', 42),

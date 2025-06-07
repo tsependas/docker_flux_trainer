@@ -72,6 +72,11 @@ import hashlib
 from toolkit.util.blended_blur_noise import get_blended_blur_noise
 from toolkit.util.get_model import get_model_class
 
+import sys
+sys.path.append('/app')
+from send_utils import send_progress
+import time
+
 def flush():
     torch.cuda.empty_cache()
     gc.collect()
@@ -1443,7 +1448,11 @@ class BaseSDTrainProcess(BaseTrainProcess):
     def run(self):
         # torch.autograd.set_detect_anomaly(True)
         # run base process run
-        BaseTrainProcess.run(self)
+        super().run()
+        
+        # Record start time for progress tracking
+        start_time = time.time()
+
         params = []
 
         ### HOOK ###
@@ -2199,6 +2208,31 @@ class BaseSDTrainProcess(BaseTrainProcess):
                 self.step_num = step + 1
                 self.grad_accumulation_step += 1
                 self.end_step_hook()
+
+                # Send simplified progress to API
+                if self.accelerator.is_main_process:
+                    # Get current learning rate
+
+                    learning_rate = optimizer.param_groups[0]['lr']
+
+                    # Get current loss
+                    current_loss = loss_dict.get('total', 0.0) if 'loss_dict' in locals() else 0.0
+                    
+                    # Calculate elapsed time
+                    elapsed_time = time.time() - start_time
+
+                    # Send progress update
+                    send_progress(
+                        job_id=self.job.name,
+                        step=step,
+                        total_steps=self.train_config.steps,
+                        loss=current_loss,
+                        learning_rate=learning_rate,
+                        elapsed_time=elapsed_time,
+                        status="training"
+                    )
+
+                    
 
 
         ###################################################################
