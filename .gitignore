@@ -10,3 +10,8 @@ __pycache__/
 **/*$py.class
 input/_latent_cache/
 input/.aitk_size.json
+input_old/
+
+data/
+
+.env

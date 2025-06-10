@@ -74,8 +74,9 @@ from toolkit.util.get_model import get_model_class
 
 import sys
 sys.path.append('/app')
-from send_utils import send_progress
+from train_utils import send_progress, send_result
 import time
+
 
 def flush():
     torch.cuda.empty_cache()
@@ -448,6 +449,8 @@ class BaseSDTrainProcess(BaseTrainProcess):
         pass
     
     def done_hook(self):
+        # Get the latest save path for the safetensors file
+       
         pass
     
     def end_step_hook(self):
@@ -2223,7 +2226,6 @@ class BaseSDTrainProcess(BaseTrainProcess):
 
                     # Send progress update
                     send_progress(
-                        job_id=self.job.name,
                         step=step,
                         total_steps=self.train_config.steps,
                         loss=current_loss,
@@ -2272,7 +2274,11 @@ class BaseSDTrainProcess(BaseTrainProcess):
         )
 
         flush()
-        self.done_hook()
+
+        # Send the result to the API
+        latest_save_path = self.get_latest_save_path(post='.safetensors')
+        if latest_save_path and os.path.exists(latest_save_path):
+            send_result(latest_save_path)
 
     def push_to_hub(
     self,
