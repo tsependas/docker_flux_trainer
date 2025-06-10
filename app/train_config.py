@@ -113,8 +113,9 @@ train_config = OrderedDict([
                     ('prompts', [
                         # you can add [trigger] to the prompts here and it will be replaced with the trigger word
                         #'[trigger] holding a sign that says \'I LOVE PROMPTS!\'',
-                        f'studio portrait of {model_trigger} with a black background',
-                        f'studio portrait of {model_trigger} with a white background'
+        
+                        f'{model_trigger} portrait on a white background',
+                        f'{model_trigger} portrait on a black background',
                     ]),
                     ('neg', ''),  # not used on flux
                     ('seed', 42),
