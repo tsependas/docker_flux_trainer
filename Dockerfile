@@ -16,7 +16,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Initialize and update git submodules
 COPY .git .git
 COPY .gitmodules .gitmodules
-RUN git submodule update --init --recursive
+#RUN git submodule update --init --recursive
 
 # Copy application files
 COPY ./app /app
