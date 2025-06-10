@@ -1,6 +1,8 @@
 workspace/
 logs/
 input/
+output/
+data/
 
 # Python cache files
 __pycache__/
@@ -13,6 +15,6 @@ input/_latent_cache/
 input/.aitk_size.json
 input_old/
 
-data/
+
 
 .env

@@ -120,14 +120,9 @@ def send_result(result: str) -> bool:
                     files=file_data
                     # Remove the Content-Type header - requests will set it automatically for multipart/form-data
                 )
+                print(f"Response: {response.text}")
         else:
-            # Handle non-file results (assuming JSON data)
-            response = requests.post(
-                endpoint,
-                json={'result': result},
-                headers={'Content-Type': 'application/json'}
-            )
-        
+            print(f"Result is not a safetensors file: {result}")
         response.raise_for_status()
         return True
     except FileNotFoundError:
