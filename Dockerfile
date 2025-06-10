@@ -20,7 +20,6 @@ RUN git submodule update --init --recursive
 
 # Copy application files
 COPY ./app /app
-COPY ./input /app/input
 COPY ./entrypoint.sh /entrypoint.sh
 
 RUN chmod +x /entrypoint.sh
