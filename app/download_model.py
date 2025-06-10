@@ -1,9 +1,9 @@
 from huggingface_hub import snapshot_download
 import os
-from logger_config import setup_logger
+import logging
 
 # Set up logger
-logger = setup_logger('model_downloader')
+logger = logging.getLogger('model_downloader')
 
 # Retrieve the Hugging Face token from the environment
 hf_token = os.environ.get("HF_TOKEN")
