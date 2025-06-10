@@ -2215,7 +2215,6 @@ class BaseSDTrainProcess(BaseTrainProcess):
                 # Send simplified progress to API
                 if self.accelerator.is_main_process:
                     # Get current learning rate
-
                     learning_rate = optimizer.param_groups[0]['lr']
 
                     # Get current loss
@@ -2224,15 +2223,16 @@ class BaseSDTrainProcess(BaseTrainProcess):
                     # Calculate elapsed time
                     elapsed_time = time.time() - start_time
 
-                    # Send progress update
-                    send_progress(
-                        step=step,
-                        total_steps=self.train_config.steps,
-                        loss=current_loss,
-                        learning_rate=learning_rate,
-                        elapsed_time=elapsed_time,
-                        status="training"
-                    )
+                    # Send progress update every 10 steps
+                    if step % 10 == 0:
+                        send_progress(
+                            step=step,
+                            total_steps=self.train_config.steps,
+                            loss=current_loss,
+                            learning_rate=learning_rate,
+                            elapsed_time=elapsed_time,
+                            status="training"
+                        )
 
                     
 

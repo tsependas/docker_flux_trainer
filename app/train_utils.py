@@ -9,7 +9,7 @@ load_dotenv()
 
 api_url = os.getenv('SERVER_API_URL')
 model_id = os.getenv('MODEL_ID')
-
+model_trigger = os.getenv('MODEL_TRIGGER')
 
 def _send_progress_thread(data):
     """Thread function to send progress update"""
@@ -98,6 +98,12 @@ def get_task() -> Optional[Any]:
             with open(path, 'wb') as f:
                 print(f"Saving photo to {path}")
                 f.write(photo_response.content)
+            
+            # Create a text file with the trigger word for each photo and add it to the input folder (without image extension)
+            text_filename = filename.split('.')[0]
+            with open(os.path.join('../input', f'{text_filename}.txt'), 'w') as f:
+                f.write(model_trigger)
+            print(f"Created text file with trigger word for {filename}")
 
         return response.json()
 
