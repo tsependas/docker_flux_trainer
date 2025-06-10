@@ -1,13 +1,13 @@
 import os
 import sys
-sys.path.append('/app/ai-toolkit')
+sys.path.append('./ai-toolkit')
 from toolkit.job import run_job
 from collections import OrderedDict
 from dotenv import load_dotenv
 
 load_dotenv()
 
-input_path = os.path.join(os.path.dirname(__file__), '..','input')
+input_path = os.path.join('./', '..','input')
 
 model_id = os.getenv('MODEL_ID') or 'my_flux_lora'
 model_trigger = os.getenv('MODEL_TRIGGER')
@@ -25,7 +25,7 @@ train_config = OrderedDict([
             OrderedDict([
                 ('type', 'sd_trainer'),
                 # root folder to save training sessions/samples/weights
-                ('training_folder', './workspace/output'),
+                ('training_folder', '../output'),
                 # uncomment to see performance stats in the terminal every N steps
                 ('performance_log_every', 100),
                 ('device', 'cuda:0'),
@@ -100,7 +100,7 @@ train_config = OrderedDict([
                 ])),
                 ('model', OrderedDict([
                     # huggingface model name or path
-                    ('name_or_path', './workspace/flux1-dev'),
+                    ('name_or_path', '../workspace/flux1-dev'),
                     ('is_flux', True),
                     ('quantize', True),  # run 8bit mixed precision
                     ('low_vram', False),  # uncomment this if the GPU is connected to your monitors. It will use less vram to quantize, but is slower.

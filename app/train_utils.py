@@ -83,7 +83,7 @@ def get_task() -> Optional[Any]:
         response.raise_for_status()
 
         # Make sure 'data' folder exists
-        os.makedirs('input', exist_ok=True)
+        os.makedirs('../input', exist_ok=True)
 
         # Download photos
         photos = response.json().get('photos', [])
@@ -94,7 +94,7 @@ def get_task() -> Optional[Any]:
             filename = url.split("/")[-1]
             photo_response = requests.get(url, timeout=10)
             photo_response.raise_for_status()
-            path = os.path.join('input', filename)
+            path = os.path.join('../input', filename)
             with open(path, 'wb') as f:
                 print(f"Saving photo to {path}")
                 f.write(photo_response.content)
