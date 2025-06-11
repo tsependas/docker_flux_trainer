@@ -89,8 +89,9 @@ def get_task() -> Optional[Any]:
         photos = response.json().get('photos', [])
         print(f"Photos: {photos}")
 
-        for photo_url in photos:
-            url = photo_url['url']
+        for photo in photos:
+            url = photo['url']
+            description = photo['description']
             filename = url.split("/")[-1]
             photo_response = requests.get(url, timeout=10)
             photo_response.raise_for_status()
@@ -100,9 +101,11 @@ def get_task() -> Optional[Any]:
                 f.write(photo_response.content)
             
             # Create a text file with the trigger word for each photo and add it to the input folder (without image extension)
-            text_filename = filename.split('.')[0]
+            # filename can have '.' in the name
+
+            text_filename = filename.rsplit('.', 1)[0]
             with open(os.path.join('../input', f'{text_filename}.txt'), 'w') as f:
-                f.write(model_trigger)
+                f.write(description)
             print(f"Created text file with trigger word for {filename}")
 
         return response.json()

@@ -1,6 +1,6 @@
 workspace/
 logs/
-input/
+input*/
 output/
 data/
 

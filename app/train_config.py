@@ -36,10 +36,13 @@ train_config = OrderedDict([
                     ('type', 'lora'),
                     ('linear', 32),
                     ('linear_alpha', 32),
-                     ('network_kwargs', OrderedDict([
+                    ('network_kwargs', OrderedDict([
                         ('only_if_contains', [
-                            "transformer.single_transformer_blocks.9.",
-                            "transformer.single_transformer_blocks.25."
+                            #"transformer_blocks.6.",
+                            "transformer_blocks.9.",
+                            "transformer_blocks.12.",
+                            "transformer_blocks.15.",
+                            #"transformer_blocks.18.",
                         ])
                     ])) 
                 ])),
@@ -61,8 +64,8 @@ train_config = OrderedDict([
                         ('num_workers', 1),
                         ('pin_memory', False),
                         #('pin_memory', True),
-                        ('latents_batch_size', 2),
-                        ('latents_dtype', 'bfloat16'),
+                        #('latents_batch_size', 2),
+                        #('latents_dtype', 'bfloat16'),
                         #('resolution', [1024])
                         ('resolution', [512, 768, 1024])  # flux enjoys multiple resolutions
                     ])
@@ -73,7 +76,7 @@ train_config = OrderedDict([
                     ('gradient_accumulation_steps', 1),
                     ('train_unet', True),
                     ('train_text_encoder', False),  # probably won't work with flux
-                    ('content_or_style', 'content'),  # content, style, balanced
+                    ('content_or_style', 'balanced'),  # content, style, balanced
                     ('gradient_checkpointing', True),  # need the on unless you have a ton of vram
                     #('gradient_checkpointing', False),
                     ('noise_scheduler', 'flowmatch'),  # for training only
@@ -107,15 +110,15 @@ train_config = OrderedDict([
                 ])),
                 ('sample', OrderedDict([
                     ('sampler', 'flowmatch'),  # must match train.noise_scheduler
-                    ('sample_every', 10000),  # sample every this many steps
+                    ('sample_every', 100),  # sample every this many steps
                     ('width', 1024),
                     ('height', 1024),
                     ('prompts', [
                         # you can add [trigger] to the prompts here and it will be replaced with the trigger word
                         #'[trigger] holding a sign that says \'I LOVE PROMPTS!\'',
         
-                        f'{model_trigger} portrait on a white background',
-                        f'{model_trigger} portrait on a black background',
+                      f'{model_trigger} smiling, face portrait, studio lighting, high detail',
+                      f'{model_trigger} face close-up, neutral expression, plain background',
                     ]),
                     ('neg', ''),  # not used on flux
                     ('seed', 42),

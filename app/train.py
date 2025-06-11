@@ -6,8 +6,6 @@ import logging
 from train_utils import get_task
 
 
-# Set up logger
-
 
 try:
     logging.info("Starting FLUX training job")
